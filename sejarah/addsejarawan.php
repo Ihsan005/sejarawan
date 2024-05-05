@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $jenis_kelamin = $_POST['jenis_kelamin'];
         $deskripsi = $_POST['deskripsi'];
 
-        if (move_uploaded_file($foto['tmp_name'], "./gambar_berita/" . $foto['name'])) {
+        if (move_uploaded_file($foto['tmp_name'], "./gambar_berita/$foto[name]")) {
             $query = $koneksi->prepare("INSERT INTO sejarawan (nama, tgl_lahir, asal, foto, jenis_kelamin, deskripsi) VALUES (?, ?, ?, ?, ?, ?)");
-            $query->bind_param("ssssss", $nama, $tgl_lahir, $asal, $foto['name'], $jenis_kelamin, $deskripsi);
+            $query->bind_param("ssssss", $nama, $tgl_lahir, $asal, $foto["name"], $jenis_kelamin, $deskripsi);
             if ($query->execute()) {
                 $response['isSuccess'] = true;
                 $response['message'] = "Berhasil menambahkan data sejarawan";

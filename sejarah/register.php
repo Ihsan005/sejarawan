@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $result = mysqli_query($koneksi, $cek);
 
     if(mysqli_num_rows($result) > 0){ 
-        $response['value'] = 2;
+        $response['isSuccess'] = false;
         $response['message'] = "Username atau email telah digunakan";
         echo json_encode($response);
     } else {
@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                    VALUES ('$username','$fullname','$nim','$nohp', '$email', '$alamat','$password', NOW())";
         
         if(mysqli_query($koneksi, $insert)){
-            $response['value'] = 1;
+            $response['isSuccess'] = true;
 			$response['username'] = $username;
             $response['email'] = $email;
             $response['fullname'] = $fullname;
@@ -39,11 +39,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             $response['message'] = "Registrasi Berhasil";
             echo json_encode($response);
         } else {
-            $response['value'] = 0;
+            $response['isSuccess'] = false;
             $response['message'] = "Gagal Registrasi";
             echo json_encode($response);
         }
     }
 }
-
-?>

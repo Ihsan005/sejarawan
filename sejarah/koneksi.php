@@ -2,12 +2,6 @@
 
 $koneksi = mysqli_connect("localhost", "root", "", "sejarah");
 
-if($koneksi){
-
-	echo "Database berhasil Connect";
-	
-} else {
+if (!$koneksi) {
 	echo "gagal Connect";
 }
-
-?>

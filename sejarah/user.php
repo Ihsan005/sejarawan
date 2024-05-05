@@ -2,15 +2,16 @@
 
 header("Access-Control-Allow-Origin: header");
 header("Access-Control-Allow-Origin: *");
+
 include 'koneksi.php';
 
-if($_SERVER['REQUEST_METHOD'] == "POST") {
-	$id = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	$username = $_POST['username'];
 
-	$sql = "SELECT * FROM user WHERE id_user = $id";
+	$sql = "SELECT * FROM user WHERE username = '$username'";
 	$result = $koneksi->query($sql);
 
-	if($result->num_rows > 0) {
+	if ($result->num_rows > 0) {
 		$response['isSuccess'] = true;
 		$response['message'] = "Berhasil Menampilkan data user";
 		$response['data'] = array();
@@ -24,5 +25,3 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 	}
 	echo json_encode($response);
 }
-
-?>

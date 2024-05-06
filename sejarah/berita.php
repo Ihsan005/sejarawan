@@ -5,7 +5,7 @@ header("Access-Control-Allow-Origin: *");
 
 include 'koneksi.php';
 
-	$sql = "SELECT * FROM berita";
+	$sql = "SELECT * FROM berita ORDER BY created DESC";
 	$result = $koneksi->query($sql);
 
 	if($result->num_rows > 0) {
@@ -21,6 +21,3 @@ include 'koneksi.php';
 		$response['data'] = null;
 	}
 	echo json_encode($response);
-
-
-?>
